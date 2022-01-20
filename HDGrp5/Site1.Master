@@ -1,0 +1,60 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="HDGrp5.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+   <head runat="server">
+      <title></title>
+      <%--bootstrap css--%>
+      <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+      <%--datatables css--%>
+      <link href="datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+      <!--custom css
+      <link href="css/customstylesheet.css" rel="stylesheet" />-->
+
+      <%--jquery--%>
+       <script src="bootstrap/js/jquery-3.3.1.slim.min.js"></script>
+      <%--popper js--%>
+       <script src="bootstrap/js/popper.min.js"></script>
+      <%--bootstrap js--%>
+       <script src="bootstrap/js/bootstrap.min.js"></script>
+      <asp:ContentPlaceHolder ID="head" runat="server">
+      </asp:ContentPlaceHolder>
+   </head>
+   <body>
+      <form id="form1" runat="server">
+         <div>
+            <nav class="navbar navbar-expand-md navbar-light mb-4" style="background-color: #75B0BF;">
+               <h1 class="navbar-brand">Ticketing system</h1>
+               
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               </button>
+               
+               <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                     <li class="nav-item active">
+                        <asp:LinkButton class="nav-link" ID="b_dashboard" runat="server" OnClick="b_dashboard_click" Visible="False">Dashboard</asp:LinkButton>
+                     </li>
+                      <li class="nav-item active">
+                        <asp:LinkButton class="nav-link" ID="b_create_ticket" runat="server" OnClick="b_create_ticket_click" Visible="False">Create Ticket</asp:LinkButton>
+                     </li>
+                     <li class="nav-item active">
+                        <a class="nav-link" href="#">FQA</a>
+                     </li>
+                  </ul>
+               </div>
+            </nav>
+         </div>
+         <!-- Main Content Placeholder -->
+         <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+         </div>
+         <!-- Main Content Placeholder -->
+        
+         <!-- Footer -->
+         <!-- ./Footer -->
+      </form>
+   </body>
+</html>
