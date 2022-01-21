@@ -33,22 +33,40 @@ namespace HDGrp5
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// b_dashboard control.
+        /// btnDashboardAoU control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton b_dashboard;
+        protected global::System.Web.UI.WebControls.LinkButton btnDashboardAoU;
 
         /// <summary>
-        /// b_create_ticket control.
+        /// btnCreateTicket control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton b_create_ticket;
+        protected global::System.Web.UI.WebControls.LinkButton btnCreateTicket;
+
+        /// <summary>
+        /// lblHello control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHello;
+
+        /// <summary>
+        /// btnLogout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnLogout;
 
         /// <summary>
         /// ContentPlaceHolder1 control.

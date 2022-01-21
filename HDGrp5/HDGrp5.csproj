@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -80,7 +83,8 @@
     <Content Include="bootstrap\js\popper.min.js" />
     <Content Include="createticket.aspx" />
     <Content Include="css\customstylesheet.css" />
-    <Content Include="dashboard.aspx" />
+    <Content Include="dashboardadmin.aspx" />
+    <Content Include="dashboarduser.aspx" />
     <Content Include="datatables\css\jquery.dataTables.min.css" />
     <Content Include="datatables\js\jquery.dataTables.min.js" />
     <Content Include="login.aspx" />
@@ -96,12 +100,19 @@
     <Compile Include="createticket.aspx.designer.cs">
       <DependentUpon>createticket.aspx</DependentUpon>
     </Compile>
-    <Compile Include="dashboard.aspx.cs">
-      <DependentUpon>dashboard.aspx</DependentUpon>
+    <Compile Include="dashboardadmin.aspx.cs">
+      <DependentUpon>dashboardadmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="dashboard.aspx.designer.cs">
-      <DependentUpon>dashboard.aspx</DependentUpon>
+    <Compile Include="dashboardadmin.aspx.designer.cs">
+      <DependentUpon>dashboardadmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dashboarduser.aspx.cs">
+      <DependentUpon>dashboarduser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dashboarduser.aspx.designer.cs">
+      <DependentUpon>dashboarduser.aspx</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
