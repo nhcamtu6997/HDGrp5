@@ -19,37 +19,45 @@
                         <%--Ticket--%>
                         <div class="card mb-3">
                             <div class="card-header">
+                                <asp:Label ID="lblStatus" runat="server" Text="status"></asp:Label>
                                 <asp:Label ID="lblTitle" runat="server" Text="Label" Font-Bold="true" Font-Size="Larger"></asp:Label>
+
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
                                         <div id="dMsg" runat="server"></div>
                                         <br />
-                                        <i class="fas fa-user mr-1"></i>
+                                        <i class="fa fa-user mr-1"></i>
                                         <asp:Label ID="lblUsername" runat="server" Text="Username"></asp:Label>
-                                        <i class="fas fa-calendar ml-4 mr-1"></i>
+                                        <i class="fa fa-calendar ml-4 mr-1"></i>
                                         <asp:Label ID="lblDate" runat="server" Text="Created Date"></asp:Label>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <%--End Ticket--%>
+                        
+                        <div style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                            <asp:LinkButton class="btn btn-danger" ID="btnCloseTicket" runat="server" OnClick="btnCloseTicket_Click" Visible="false" Text="Close this ticket"></asp:LinkButton>
+                          
+                        </div>
                         <h3 class="mb-4">Replies</h3>
                         <%--Reply output repeat--%>
                         <asp:Repeater ID="Repeater1" runat="server">
                             <ItemTemplate>
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        <i class="fas fa-user mr-1"></i>
+                                        <i class="fa fa-user mr-1"></i>
                                         <asp:Label ID="lblRepUserName" runat="server" Text='<%#Eval("name") %>' />
-                                        <i class="fas fa-calendar ml-4 mr-1"></i>
+                                        <i class="fa fa-calendar ml-4 mr-1"></i>
                                         <asp:Label ID="lblRepTime" runat="server" Text='<%#Eval("date") %>' />
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <div id="Div1" runat="server" InnerText='<%#Eval("text") %>' />
+                                                <div id="Div1" runat="server" innertext='<%#Eval("text") %>' />
                                             </div>
                                         </div>
                                     </div>

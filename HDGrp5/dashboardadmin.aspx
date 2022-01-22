@@ -12,7 +12,7 @@
         <!-- End Message for User-->
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <asp:GridView class="table table-sm table-bordered" ID="GridView1" runat="server" EmptyDataText="No record to display..!" AutoGenerateColumns="False" AllowPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging" DataKeyNames="id" OnRowCommand ="GridView1_RowCommand">
+                <asp:GridView class="table table-sm table-bordered" ID="GridView1" runat="server" EmptyDataText="No record to display..!" AutoGenerateColumns="False" AllowPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging" DataKeyNames="id" OnRowCommand ="GridView1_RowView">
                     <Columns>
                         
                         <asp:BoundField DataField="id" HeaderText="Ticket ID">
@@ -37,6 +37,11 @@
 
                         <asp:BoundField DataField="create_date" HeaderText="Created Date">
                         <HeaderStyle HorizontalAlign="Center" />
+                        </asp:BoundField>
+
+                        <asp:BoundField DataField="status" HeaderText="Status" ReadOnly="True">
+                        <ItemStyle VerticalAlign="Middle" />
+                        <HeaderStyle HorizontalAlign ="Center" VerticalAlign="Middle" />
                         </asp:BoundField>
 
                         <asp:TemplateField>
