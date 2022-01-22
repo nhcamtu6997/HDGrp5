@@ -37,8 +37,7 @@ namespace HDGrp5
                 setRepBox();
                 showDetaislTicket();
                 showReplies();
-            }    
-            
+            }            
         }  
 
         protected void btnReply_Click(object sender, EventArgs e)

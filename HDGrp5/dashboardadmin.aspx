@@ -40,8 +40,7 @@
                         </asp:BoundField>
 
                         <asp:BoundField DataField="status" HeaderText="Status" ReadOnly="True">
-                        <ItemStyle VerticalAlign="Middle" />
-                        <HeaderStyle HorizontalAlign ="Center" VerticalAlign="Middle" />
+                        <HeaderStyle HorizontalAlign ="Center"/>
                         </asp:BoundField>
 
                         <asp:TemplateField>
