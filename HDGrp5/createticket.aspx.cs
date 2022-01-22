@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Asn1.Cms;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -14,63 +15,80 @@ namespace HDGrp5
     {
         // Connection String
         string strcon = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
+        SqlConnection con;
+        SqlCommand cmd;
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        // Add button clicked
-        protected void Button2_Click(object sender, EventArgs e)
+        protected void btnSubmit_Click(object sender, EventArgs e)
         {
             createNewTicket();
         }
 
-        public static String GetTimestamp(DateTime value)
+        protected void btnDiscard_Click(object sender, EventArgs e)
         {
-            return value.ToString("yyyyMMddHHmmss");
+            Response.Redirect("dashboarduser.aspx", false);
         }
 
+        public static String GetTimestamp(DateTime value)
+        {
+            return value.ToString("yyMMddHHmmss");
+        }
 
-
-        void createNewTicket()
+        // need to create table and code for link uploaded files 
+        private void createNewTicket()
         {
             try
             {
                 var timeStamp = GetTimestamp(DateTime.Now);
 
-                SqlConnection con = new SqlConnection(strcon);
-                
+                con = new SqlConnection(strcon);
+
                 con.Open();
-                
-                var text = "INSERT INTO g5_tickets(uniqid, user_id, title, init_msg, kategorie_id, date, last_reply, user_read, admin_read, resolved) VALUES (@uniqid, @user_id, @title, @init_msg, @kategorie_id, @date, @last_reply, @user_read, @admin_read, @resolved);";
 
-                // ('617c0ba6d462b', 2, 'there some issues', 'there some issues', 1, '1635519398', 2, 1, 0, 0);
+                var text = "INSERT INTO g5_tickets(uniqid, user_id, title, init_msg, kategorie_name, create_date, last_reply, resolved) VALUES (@uniqid, @user_id, @title, @init_msg, @kategorie_name, @create_date, @last_reply, @resolved);";
 
-                SqlCommand cmd = new SqlCommand(text, con);
+                cmd = new SqlCommand(text, con);
 
                 cmd.Parameters.AddWithValue("@uniqid", "gr5" + timeStamp);
-                cmd.Parameters.AddWithValue("@user_id", 2);
-                cmd.Parameters.AddWithValue("@title", TextBox1.Text.Trim());
-                cmd.Parameters.AddWithValue("@init_msg", TextBox3.Text.Trim());
-                cmd.Parameters.AddWithValue("@kategorie_id", 1);
-                cmd.Parameters.AddWithValue("@date", timeStamp);
-                cmd.Parameters.AddWithValue("@last_reply", 2);
-                cmd.Parameters.AddWithValue("@user_read", 1);
-                cmd.Parameters.AddWithValue("@admin_read", 0);
+                cmd.Parameters.AddWithValue("@user_id", Session["userID"].ToString());
+                cmd.Parameters.AddWithValue("@title", txtSubject.Text.Trim());
+                cmd.Parameters.AddWithValue("@init_msg", txtMessage.Text.Trim());
+                cmd.Parameters.AddWithValue("@kategorie_name", ddlCategory.SelectedValue);
+                cmd.Parameters.AddWithValue("@create_date", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                cmd.Parameters.AddWithValue("@last_reply", 0);
                 cmd.Parameters.AddWithValue("@resolved", 0);
 
                 cmd.ExecuteNonQuery();
 
-                con.Close();
-
-                Response.Write("<script>alert('Wir haben Ihre Ticket bekommen!');</script>");
-
+                clear();
+                showMsg();
             }
             catch (Exception ex)
             {
                 Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
+            finally
+            {
+                con.Close();
+
+            }
         }
+        private void clear()
+        {
+            txtSubject.Text = string.Empty;
+            txtMessage.Text = string.Empty;
+            ddlCategory.ClearSelection();
+        }
+        private void showMsg()
+        {
+            lblMsg.Visible = true;
+            lblMsg.Text = "Your ticket has been received!";
+            lblMsg.CssClass = "alert alert-success";
+        }
+
     }
 }

@@ -3,58 +3,73 @@
 <!DOCTYPE html>
 
 <html>
-   <head runat="server">
-      <title></title>
-      <%--bootstrap css--%>
-      <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-      <%--datatables css--%>
-      <link href="datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<head runat="server">
+    <title></title>
+    <%--bootstrap css--%>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <%--datatables css--%>
+    <link href="datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
 
-      <!--custom css
-      <link href="css/customstylesheet.css" rel="stylesheet" />-->
+    <%--jquery--%>
+    <script src="bootstrap/js/jquery-3.3.1.slim.min.js"></script>
+    <%--popper js--%>
+    <script src="bootstrap/js/popper.min.js"></script>
+    <%--bootstrap js--%>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <%--datatables js--%>
+    <script src="datatables/js/jquery.dataTables.min.js"></script>
 
-      <%--jquery--%>
-       <script src="bootstrap/js/jquery-3.3.1.slim.min.js"></script>
-      <%--popper js--%>
-       <script src="bootstrap/js/popper.min.js"></script>
-      <%--bootstrap js--%>
-       <script src="bootstrap/js/bootstrap.min.js"></script>
-      <asp:ContentPlaceHolder ID="head" runat="server">
-      </asp:ContentPlaceHolder>
-   </head>
-   <body>
-      <form id="form1" runat="server">
-         <div>
-            <nav class="navbar navbar-expand-md navbar-light mb-4" style="background-color: #75B0BF;">
-               <h1 class="navbar-brand">Ticketing system</h1>
-               
-               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-               </button>
-               
-               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto">
-                     <li class="nav-item active">
-                        <asp:LinkButton class="nav-link" ID="b_dashboard" runat="server" OnClick="b_dashboard_click" Visible="False">Dashboard</asp:LinkButton>
-                     </li>
-                      <li class="nav-item active">
-                        <asp:LinkButton class="nav-link" ID="b_create_ticket" runat="server" OnClick="b_create_ticket_click" Visible="False">Create Ticket</asp:LinkButton>
-                     </li>
-                     <li class="nav-item active">
-                        <a class="nav-link" href="#">FQA</a>
-                     </li>
-                  </ul>
-               </div>
+    <%--fontawesome icons--%>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <nav class="navbar navbar-expand-md navbar-light mb-4" style="background-color: #75B0BF">
+                <div class="container">
+                    <h1 class="navbar-brand">Ticketing system</h1>
+                    
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <asp:LinkButton class="nav-link" ID="btnDashboardAoU" runat="server" OnClick="btnDashboardAoU_Click" Visible="False">Dashboard</asp:LinkButton>
+                            </li>
+                            <li class="nav-item">
+                                <asp:LinkButton class="nav-link" ID="btnCreateTicket" runat="server" OnClick="btnCreateTicket_Click" Visible="False">Create Ticket</asp:LinkButton>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">FQA</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <asp:Label class="nav-link" ID="lblHello" runat="server" Visible="False">Hello</asp:Label>
+                            </li>
+                            <li class="nav-item">
+                                <asp:LinkButton class="nav-link" ID="btnLogout" runat="server" Visible="False" OnClick="btnLogout_Click">Logout</asp:LinkButton>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
             </nav>
-         </div>
-         <!-- Main Content Placeholder -->
-         <div>
+        </div>
+        
+        <!-- Main Content Placeholder -->
+        <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
-         </div>
-         <!-- Main Content Placeholder -->
-        
-         <!-- Footer -->
-         <!-- ./Footer -->
-      </form>
-   </body>
+        </div>
+        <!-- Main Content Placeholder -->
+
+        <!-- Footer -->
+        <!-- ./Footer -->
+    </form>
+</body>
 </html>

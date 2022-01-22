@@ -13,6 +13,8 @@ namespace HDGrp5
     {
         // Connection String
         string strcon = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
+        SqlConnection con;
+        SqlCommand cmd;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,37 +22,98 @@ namespace HDGrp5
         }
 
         // Login Button
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {
-                SqlConnection con = new SqlConnection(strcon);
-                con.Open();
+                con = new SqlConnection(strcon);
                 
-                var text = "SELECT * FROM g5_users WHERE email= '" + TextBox1.Text.Trim() + "' AND password= '"+ TextBox2.Text.Trim() +"';";
+                con.Open();
 
-                SqlCommand cmd = new SqlCommand(text, con);
-
-                SqlDataReader dr = cmd.ExecuteReader();
-                if (dr.HasRows)
+                if (ddlLoginType.SelectedValue == "Admin")
                 {
-                    while (dr.Read())
+                    var text_admin = "SELECT * FROM g5_users WHERE email=@email AND password=@password AND user_type=@user_type;";
+                    cmd = new SqlCommand(text_admin, con);
+
+                    cmd.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
+                    cmd.Parameters.AddWithValue("@password", txtPassword.Text.Trim());
+                    cmd.Parameters.AddWithValue("@user_type", "admin");
+
+                    // Use this for INSERT
+                    // cmd.ExecuteNonQuery();
+
+                    SqlDataReader dra = cmd.ExecuteReader();
+                    if (dra.HasRows)
                     {
-                        Response.Write("<script>alert('Welcome "+ dr.GetValue(3).ToString() + "');</script>");
+                        while (dra.Read())
+                        {
+                            Response.Write("<script>alert('Login successful');</script>");
+                            // Set Session "admin"
+                            Session["admin"] = dra.GetValue(3).ToString(); //name
+                            Session["adminID"] = dra.GetValue(0).ToString(); 
+                        }
+
+                        Response.Redirect("dashboardadmin.aspx", false);
+                    }
+                    else
+                    {
+                        showErrorMsg("Admin");
                     }
                 }
-                else
-                {
-                    Response.Write("<script>alert('Invalid');</script>");
-                }
 
-                con.Close();
+                else if (ddlLoginType.SelectedValue == "User")
+                {
+                    var text_user = "SELECT * FROM g5_users WHERE email=@email AND password=@password AND user_type=@user_type;";
+                    cmd = new SqlCommand(text_user, con);
+
+                    cmd.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
+                    cmd.Parameters.AddWithValue("@password", txtPassword.Text.Trim());
+                    cmd.Parameters.AddWithValue("@user_type", "user");
+
+
+                    SqlDataReader dru = cmd.ExecuteReader();
+                    if (dru.HasRows)
+                    {
+                        while (dru.Read())
+                        {
+                            // Set Session "user"
+                            Session["user"] = dru.GetValue(3).ToString(); //name
+                            Session["userID"] = dru.GetValue(0).ToString();
+                        }
+
+                        Response.Redirect("dashboarduser.aspx", false);
+                    }
+                    else
+                    {
+                        showErrorMsg("User");
+                    }
+                }
+                
 
             }
             catch(Exception ex)
             {
                 Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
+            finally
+            {
+                con.Close();
+                clear();
+            }
+        }
+
+        private void showErrorMsg(string userType)
+        {
+            lblMsg.Visible = true;
+            lblMsg.Text = userType + " Invalid";
+            lblMsg.CssClass = "alert alert-danger";
+        }
+
+        private void clear()
+        {
+            txtEmail.Text = string.Empty;
+            txtPassword.Text = string.Empty;
+            ddlLoginType.ClearSelection();
         }
     }
 }
