@@ -29,6 +29,10 @@
                         <HeaderStyle HorizontalAlign="Center" />
                         </asp:BoundField>
 
+                        <asp:BoundField DataField="status" HeaderText="Status" ReadOnly="True">
+                        <HeaderStyle HorizontalAlign ="Center"/>
+                        </asp:BoundField>
+
                         <asp:TemplateField>
                             <ItemStyle HorizontalAlign="Center" />
                             <ItemTemplate>

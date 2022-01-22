@@ -69,38 +69,6 @@ namespace HDGrp5
                 Response.Redirect("viewticket.aspx?id=" + e.CommandArgument.ToString());
             }
         }
-
-        //protected void GridView1_RowClose(object sender, GridViewUpdateEventArgs e)
-        //{
-        //    GridViewRow row = GridView1.Rows[e.RowIndex];
-        //    int ID = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
-
-        //    try
-        //    {
-        //        con = new SqlConnection(strcon);
-        //        con.Open();
-
-        //        query = "UPDATE [dbo].[g5_tickets] SET status = @status WHERE id = @id";
-
-        //        cmd = new SqlCommand(query, con);
-
-        //        cmd.Parameters.AddWithValue("@id", ID);
-        //        cmd.Parameters.AddWithValue("@status", "closed");
-
-        //        cmd.ExecuteNonQuery();
-        //        con.Close();
-                
-        //        GridView1.EditIndex = -1;
-        //        GridView1.DataBind();
-
-        //        Response.Write("<script>alert('Gut gemacht');</script>");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Response.Write("<script>alert('" + ex.Message + "');</script>");
-        //    }
-        //}
-
         
     }
 }
