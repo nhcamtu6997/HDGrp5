@@ -10,7 +10,7 @@
         <!-- End Message for User-->
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <asp:GridView class="table table-striped table-bordered" ID="GridView1" runat="server" EmptyDataText="No record to display..!" AutoGenerateColumns="False" AllowPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging" DataKeyNames="id"  OnRowCommand ="GridView1_RowCommand">
+                <asp:GridView class="table table-sm table-bordered" ID="GridView1" runat="server" EmptyDataText="No record to display..!" AutoGenerateColumns="False" AllowPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging" DataKeyNames="id"  OnRowCommand ="GridView1_RowCommand">
                     <Columns>
                         
                         <asp:BoundField DataField="id" HeaderText="Ticket ID">

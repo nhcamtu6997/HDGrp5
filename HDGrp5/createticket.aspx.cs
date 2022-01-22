@@ -49,23 +49,21 @@ namespace HDGrp5
 
                 con.Open();
 
-                var text = "INSERT INTO g5_tickets(uniqid, user_id, title, init_msg, kategorie_name, create_date, last_reply, resolved) VALUES (@uniqid, @user_id, @title, @init_msg, @kategorie_name, @create_date, @last_reply, @resolved);";
+                var text = "INSERT INTO g5_tickets(user_id, title, init_msg, kategorie_name, create_date, status) VALUES (@user_id, @title, @init_msg, @kategorie_name, @create_date, @status);";
 
                 cmd = new SqlCommand(text, con);
 
-                cmd.Parameters.AddWithValue("@uniqid", "gr5" + timeStamp);
                 cmd.Parameters.AddWithValue("@user_id", Session["userID"].ToString());
                 cmd.Parameters.AddWithValue("@title", txtSubject.Text.Trim());
                 cmd.Parameters.AddWithValue("@init_msg", txtMessage.Text.Trim());
                 cmd.Parameters.AddWithValue("@kategorie_name", ddlCategory.SelectedValue);
                 cmd.Parameters.AddWithValue("@create_date", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                cmd.Parameters.AddWithValue("@last_reply", 0);
-                cmd.Parameters.AddWithValue("@resolved", 0);
+                cmd.Parameters.AddWithValue("@status", "open");
 
                 cmd.ExecuteNonQuery();
 
                 clear();
-                showMsg();
+                Response.Redirect("dashboarduser.aspx");
             }
             catch (Exception ex)
             {
@@ -82,12 +80,6 @@ namespace HDGrp5
             txtSubject.Text = string.Empty;
             txtMessage.Text = string.Empty;
             ddlCategory.ClearSelection();
-        }
-        private void showMsg()
-        {
-            lblMsg.Visible = true;
-            lblMsg.Text = "Your ticket has been received!";
-            lblMsg.CssClass = "alert alert-success";
         }
 
     }

@@ -9,7 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace HDGrp5
-{   // Still need to add function view, delete and close ticket 
+{   
     public partial class dashboardadmin : System.Web.UI.Page
     {
         // Connection String
@@ -17,6 +17,7 @@ namespace HDGrp5
         SqlConnection con;
         SqlCommand cmd;
         DataTable dt;
+        string query;
 
         protected void Page_PreRender(object sender, EventArgs e)
         {
@@ -38,9 +39,9 @@ namespace HDGrp5
 
         private void ShowList()
         {
-            
             con = new SqlConnection(strcon);
-            var query = "SELECT t.id, t.title, t.user_id, t.kategorie_name, t.create_date, u.name " +
+            
+            query = "SELECT t.id, t.title, t.user_id, t.kategorie_name, t.create_date, t.status, u.name " +
                 "FROM [dbo].[g5_tickets] AS t " +
                 "JOIN [dbo].[g5_users] AS u ON t.user_id = u.id " +
                 "ORDER BY id DESC;";
@@ -61,12 +62,45 @@ namespace HDGrp5
 
         }
 
-        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void GridView1_RowView(object sender, GridViewCommandEventArgs e)
         {
             if(e.CommandName == "ViewTicket")
             {
                 Response.Redirect("viewticket.aspx?id=" + e.CommandArgument.ToString());
             }
         }
+
+        //protected void GridView1_RowClose(object sender, GridViewUpdateEventArgs e)
+        //{
+        //    GridViewRow row = GridView1.Rows[e.RowIndex];
+        //    int ID = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
+
+        //    try
+        //    {
+        //        con = new SqlConnection(strcon);
+        //        con.Open();
+
+        //        query = "UPDATE [dbo].[g5_tickets] SET status = @status WHERE id = @id";
+
+        //        cmd = new SqlCommand(query, con);
+
+        //        cmd.Parameters.AddWithValue("@id", ID);
+        //        cmd.Parameters.AddWithValue("@status", "closed");
+
+        //        cmd.ExecuteNonQuery();
+        //        con.Close();
+                
+        //        GridView1.EditIndex = -1;
+        //        GridView1.DataBind();
+
+        //        Response.Write("<script>alert('Gut gemacht');</script>");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Response.Write("<script>alert('" + ex.Message + "');</script>");
+        //    }
+        //}
+
+        
     }
 }

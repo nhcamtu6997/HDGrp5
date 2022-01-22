@@ -21,19 +21,20 @@ namespace HDGrp5
         DataSet ds;
         string query;
 
-        protected void Page_PreRender(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {   
-                Page.DataBind();
-                showReplies();
-            }
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["admin"] != null)
+            {
+                btnCloseTicket.Visible = true;
+            }
+            else if (Session["user"] != null){
+                btnCloseTicket.Visible = false;
+            }
+
             if (!IsPostBack)
             {
+                Page.DataBind();
+                setRepBox();
                 showDetaislTicket();
                 showReplies();
             }    
@@ -43,6 +44,86 @@ namespace HDGrp5
         protected void btnReply_Click(object sender, EventArgs e)
         {
             saveReplies();
+        }
+
+        protected void btnCloseTicket_Click(object sender, EventArgs e)
+        {
+            try{
+                con = new SqlConnection(strcon);
+                con.Open();
+
+                query = "UPDATE g5_tickets SET status = 'closed' WHERE id = @id;";
+
+                cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@id", Request.QueryString["id"]);
+
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+                Response.Redirect(Request.Url.AbsoluteUri);
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
+        }
+
+        private void showDetaislTicket()
+        {
+            try
+            {
+                if (Request.QueryString["id"] != null)
+                {
+                    con = new SqlConnection(strcon);
+                    con.Open();
+
+                    query = "SELECT t.id, t.title, t.init_msg, t.kategorie_name, t.create_date, t.status, u.name FROM [dbo].[g5_tickets] AS t " +
+                        "JOIN [dbo].[g5_users] AS u " +
+                        "ON t.user_id = u.id " +
+                        "WHERE t.id = @id;";
+                    cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@id", Request.QueryString["id"]);
+
+                    sdr = cmd.ExecuteReader();
+
+                    if (sdr.HasRows)
+                    {
+                        while (sdr.Read())
+                        {
+                            // Put data from DB to frontend code
+                            lblTitle.Text = sdr["title"].ToString();
+                            lblUsername.Text = sdr["name"].ToString();
+                            dMsg.InnerText = sdr["init_msg"].ToString();
+                            lblDate.Text = sdr["create_date"].ToString();
+
+                            // Set status of ticket 
+                            if (String.Equals(sdr["status"].ToString(), "open"))
+                            {
+                                lblStatus.Text = "Open";
+                                lblStatus.CssClass = "badge rounded-pill bg-info text-dark";
+                            } 
+                            else if (String.Equals(sdr["status"].ToString(), "closed"))
+                            {
+                                lblStatus.Text = "Closed";
+                                lblStatus.CssClass = "badge rounded-pill bg-secondary";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        lblMsg.Text = "Ticket not found..! ";
+                        lblMsg.CssClass = "alert alert-danger";
+                    }
+
+                    sdr.Close();
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
+
         }
 
         private void showReplies()
@@ -56,8 +137,6 @@ namespace HDGrp5
                     "ON r.user_id = u.id WHERE r.ticket_id = @id;";
                 cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@id", Request.QueryString["id"]);
-
-                //cmd.CommandType = CommandType.StoredProcedure;
 
                 sda = new SqlDataAdapter(cmd);
                 ds = new DataSet();
@@ -111,56 +190,41 @@ namespace HDGrp5
                 Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
         }
-
-        private void showDetaislTicket()
-        {
-            try
-            {
-                if (Request.QueryString["id"] != null)
-                {
-                    con = new SqlConnection(strcon);
-                    con.Open();
-
-                    query = "SELECT t.id, t.title, t.init_msg, t.kategorie_name, t.create_date, u.name FROM [dbo].[g5_tickets] AS t " +
-                        "JOIN [dbo].[g5_users] AS u " +
-                        "ON t.user_id = u.id " +
-                        "WHERE t.id = @id;";
-                    cmd = new SqlCommand(query, con);
-                    cmd.Parameters.AddWithValue("@id", Request.QueryString["id"]);
-
-                    sdr = cmd.ExecuteReader();
-
-                    if (sdr.HasRows)
-                    {
-                        while (sdr.Read())
-                        {
-                            // Put data from DB to frontend code
-                            lblTitle.Text = sdr["title"].ToString();
-                            lblUsername.Text = sdr["name"].ToString();
-                            dMsg.InnerText = sdr["init_msg"].ToString();
-                            lblDate.Text = sdr["create_date"].ToString();
-                        }
-                    }
-                    else
-                    {
-                        lblMsg.Text = "Ticket not found..! ";
-                        lblMsg.CssClass = "alert alert-danger";
-                    }
-
-                    sdr.Close();
-                    con.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                Response.Write("<script>alert('" + ex.Message + "');</script>");
-            }
-
-        }
-
+    
         private void clear()
         {
             txtReply.Text = string.Empty;
         }
+
+        private void setRepBox()
+        {
+            con = new SqlConnection(strcon);
+            con.Open();
+
+            query = "SELECT * FROM g5_tickets WHERE id = @id";
+            cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@id", Request.QueryString["id"]);
+
+            sdr = cmd.ExecuteReader();
+
+            if (sdr.HasRows)
+            {
+                while(sdr.Read())
+                {
+                    if (String.Equals(sdr["status"].ToString(), "open"))
+                    {
+                        btnReply.Visible = true;
+                        txtReply.Visible = true;
+                    }
+                    else if (String.Equals(sdr["status"].ToString(), "closed"))
+                    {
+                        btnReply.Visible = false;
+                        txtReply.Visible = false;
+                    }
+                }
+                
+            }
+        }
+        
     }
 }

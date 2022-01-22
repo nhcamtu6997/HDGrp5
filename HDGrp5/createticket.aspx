@@ -37,6 +37,7 @@
                             <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-control w-100" AppendDataBoundItems="true" DataTextField="name" DataValueField="name" DataSourceID="SqlDataSource1">
                                 <asp:ListItem Value="0"> Select Category</asp:ListItem>
                             </asp:DropDownList>
+
                             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:con %>" SelectCommand="SELECT [name] FROM [g5_kategorie]"></asp:SqlDataSource>
                         </div>
                         <label>Message</label>
