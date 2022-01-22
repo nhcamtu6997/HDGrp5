@@ -39,7 +39,7 @@ namespace HDGrp5
         {
 
             con = new SqlConnection(strcon);
-            var query = "SELECT id, title, user_id, kategorie_name, create_date FROM g5_tickets WHERE user_id=@user_id";
+            var query = "SELECT * FROM g5_tickets WHERE user_id=@user_id ORDER BY id DESC;";
 
             cmd = new SqlCommand(query, con);
 
@@ -56,6 +56,14 @@ namespace HDGrp5
             GridView1.PageIndex = e.NewPageIndex;
             this.ShowList();
 
+        }
+
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "ViewTicket")
+            {
+                Response.Redirect("viewticket.aspx?id=" + e.CommandArgument.ToString());
+            }
         }
     }
 }

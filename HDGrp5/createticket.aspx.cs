@@ -58,7 +58,7 @@ namespace HDGrp5
                 cmd.Parameters.AddWithValue("@title", txtSubject.Text.Trim());
                 cmd.Parameters.AddWithValue("@init_msg", txtMessage.Text.Trim());
                 cmd.Parameters.AddWithValue("@kategorie_name", ddlCategory.SelectedValue);
-                cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                cmd.Parameters.AddWithValue("@create_date", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 cmd.Parameters.AddWithValue("@last_reply", 0);
                 cmd.Parameters.AddWithValue("@resolved", 0);
 
