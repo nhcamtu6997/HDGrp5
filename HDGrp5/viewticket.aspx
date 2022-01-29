@@ -43,6 +43,10 @@
                             <asp:LinkButton class="btn btn-danger" ID="btnCloseTicket" runat="server" OnClick="btnCloseTicket_Click" Visible="false" Text="Close this ticket"></asp:LinkButton>
                           
                         </div>
+                        <div style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                            <asp:LinkButton class="btn btn-danger" ID="btnReopenTicket" runat="server" OnClick="btnReopenTicket_Click" Visible="false" Text="Reopen this ticket"></asp:LinkButton>
+                          
+                        </div>
                         <h3 class="mb-4">Replies</h3>
                         <%--Reply output repeat--%>
                         <asp:Repeater ID="Repeater1" runat="server">

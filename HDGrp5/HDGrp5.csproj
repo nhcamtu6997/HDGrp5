@@ -87,6 +87,7 @@
     <Content Include="dashboarduser.aspx" />
     <Content Include="datatables\css\jquery.dataTables.min.css" />
     <Content Include="datatables\js\jquery.dataTables.min.js" />
+    <Content Include="FAQ.aspx" />
     <Content Include="login.aspx" />
     <Content Include="resetpass.aspx" />
     <Content Include="viewticket.aspx" />
@@ -113,6 +114,13 @@
     </Compile>
     <Compile Include="dashboarduser.aspx.designer.cs">
       <DependentUpon>dashboarduser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FAQ.aspx.cs">
+      <DependentUpon>FAQ.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FAQ.aspx.designer.cs">
+      <DependentUpon>FAQ.aspx</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>

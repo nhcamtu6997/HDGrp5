@@ -20,6 +20,7 @@ namespace HDGrp5
         SqlDataAdapter sda;
         DataSet ds;
         string query;
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,6 +30,31 @@ namespace HDGrp5
             }
             else if (Session["user"] != null){
                 btnCloseTicket.Visible = false;
+            }
+            string idstring = Request.QueryString["id"];
+            Console.WriteLine(idstring);
+
+            con = new SqlConnection(strcon);
+            con.Open();
+            query = "Select status from [dbo].[g5_tickets] WHERE id = @id;";
+
+            cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@id", Request.QueryString["id"]);
+
+            sdr = cmd.ExecuteReader();
+            
+
+            if (sdr.HasRows)
+            {
+                while (sdr.Read())
+                {
+                    String status = sdr["status"].ToString();
+
+                    if (status.Equals("closed"))
+                    {
+                        btnReopenTicket.Visible = true;
+                    }
+                }
             }
 
             if (!IsPostBack)
@@ -55,6 +81,29 @@ namespace HDGrp5
 
                 cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@id", Request.QueryString["id"]);
+
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+                Response.Redirect(Request.Url.AbsoluteUri);
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
+        }
+
+        protected void btnReopenTicket_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                con = new SqlConnection(strcon);
+                con.Open();
+
+                query = "UPDATE g5_tickets SET status = 'open' WHERE id = @id;";
+
+                cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("id", Request.QueryString["id"]);
 
                 cmd.ExecuteNonQuery();
                 con.Close();
