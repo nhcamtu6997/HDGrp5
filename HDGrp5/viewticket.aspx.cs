@@ -53,9 +53,11 @@ namespace HDGrp5
                     if (status.Equals("closed"))
                     {
                         btnReopenTicket.Visible = true;
+                        btnCloseTicket.Visible=false;
                     }
                 }
             }
+
 
             if (!IsPostBack)
             {
