@@ -90,6 +90,7 @@
     <Content Include="FAQ.aspx" />
     <Content Include="login.aspx" />
     <Content Include="resetpass.aspx" />
+    <Content Include="signup.aspx" />
     <Content Include="viewticket.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -136,6 +137,13 @@
     </Compile>
     <Compile Include="resetpass.aspx.designer.cs">
       <DependentUpon>resetpass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="signup.aspx.cs">
+      <DependentUpon>signup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="signup.aspx.designer.cs">
+      <DependentUpon>signup.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>

@@ -3,8 +3,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
-  <div class="panel-group" id="accordion">
-  <div class="panel panel-default">
+  <div class="panel-group border border-primary rounded" id="accordion">
+  <div class="border border-bottom panel panel-default p-1">
     <div class="panel-heading">
       <h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
@@ -15,7 +15,7 @@
       <div class="panel-body">Antwort 1.</div>
     </div>
   </div>
-      <div class="panel panel-default">
+      <div class="panel panel-default p-1">
     <div class="panel-heading">
       <h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">

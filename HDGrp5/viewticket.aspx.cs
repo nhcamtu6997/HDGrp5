@@ -31,8 +31,7 @@ namespace HDGrp5
             else if (Session["user"] != null){
                 btnCloseTicket.Visible = false;
             }
-            string idstring = Request.QueryString["id"];
-            Console.WriteLine(idstring);
+         
 
             con = new SqlConnection(strcon);
             con.Open();
