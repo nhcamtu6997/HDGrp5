@@ -22,26 +22,45 @@ namespace HDGrp5
 
         public void CreateUser(object sender, EventArgs e)
         {
+            if(!PassWordValid(txtPassword.Text.Trim(), txtReEnterPassword.Text.Trim()))
+            {
+                showErrorMessage("Passwords don't match");
+            }
+            else { 
             string smail = SignUpEmail.Text.Trim();
             Debug.WriteLine("output smail: " + smail);
             Debug.WriteLine("test");
-            signup signup = new signup();
-            if (signup.checkUserExists(smail))
-            {
-                Console.WriteLine("user already exists");
-                return;
+
+
+                if (checkUserExists(smail))
+                {
+                    Debug.WriteLine("user already exists");
+                    showErrorMessage("User already exists");
+                    return;
+                }
+                else
+                {
+                    // string password = HashString(txtPassword.Text.Trim());
+
+                    con = new SqlConnection(strcon);
+                    con.Open();
+                    var text = "INSERT INTO g5_users(email, password, name, user_type) VALUES (@email, @password, @name, @user_type);";
+                    cmd = new SqlCommand(text, con);
+                    cmd.Parameters.AddWithValue("@email", smail);
+                    cmd.Parameters.AddWithValue("@password", Hash.HashString(txtPassword.Text.Trim()));                   
+                    cmd.Parameters.AddWithValue("@name", txtName.Text.Trim());
+                    cmd.Parameters.AddWithValue("@user_type", "user");
+
+                    cmd.ExecuteNonQuery();
+                    
+
+                }
             }
             
-            con = new SqlConnection(strcon);
-            con.Open();
-
-            string hash = txtPassword.ToString();
-            using (SHA256 sha256 = SHA256.Create())
-                Console.WriteLine(hash);
                       
         }
 
-        private Boolean checkUserExists(string email)
+        private bool checkUserExists(string email)
         {
             con = new SqlConnection(strcon);
             con.Open();
@@ -63,6 +82,28 @@ namespace HDGrp5
                 return false;
             }
         }
+
+      
+        
+           
+        
+        private bool PassWordValid(string p1, string p2)
+        {
+            if (p1.Equals(p2))
+            return true;
+
+            else
+            {
+                return false;
+            }
+        }
+        private void showErrorMessage(string text)
+        {
+            lblErrorMsg.Visible = true;
+            lblErrorMsg.Text = text;
+            lblErrorMsg.CssClass = "alert alert-danger";
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 

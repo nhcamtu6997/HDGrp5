@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace HDGrp5
 {
     public partial class login : System.Web.UI.Page
@@ -32,34 +33,38 @@ namespace HDGrp5
 
                 if (ddlLoginType.SelectedValue == "Admin")
                 {
-                    var text_admin = "SELECT * FROM g5_users WHERE email=@email AND password=@password AND user_type=@user_type;";
-                    cmd = new SqlCommand(text_admin, con);
+                    
+                  
+                    
 
-                    cmd.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
-                    cmd.Parameters.AddWithValue("@password", txtPassword.Text.Trim());
-                    cmd.Parameters.AddWithValue("@user_type", "admin");
+                        var text_admin = "SELECT * FROM g5_users WHERE email=@email AND password=@password AND user_type=@user_type;";
+                        cmd = new SqlCommand(text_admin, con);
 
-                    // Use this for INSERT
-                    // cmd.ExecuteNonQuery();
+                        cmd.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
+                        cmd.Parameters.AddWithValue("@password", Hash.HashString(txtPassword.Text.Trim()));                        
+                        cmd.Parameters.AddWithValue("@user_type", "admin");
 
-                    SqlDataReader dra = cmd.ExecuteReader();
-                    if (dra.HasRows)
-                    {
-                        while (dra.Read())
+                        // Use this for INSERT
+                        // cmd.ExecuteNonQuery();
+
+                        SqlDataReader dra = cmd.ExecuteReader();
+                        if (dra.HasRows)
                         {
-                            Response.Write("<script>alert('Login successful');</script>");
-                            // Set Session "admin"
-                            Session["admin"] = dra.GetValue(3).ToString(); //name
-                            Session["adminID"] = dra.GetValue(0).ToString(); 
-                        }
+                            while (dra.Read())
+                            {
+                                Response.Write("<script>alert('Login successful');</script>");
+                                // Set Session "admin"
+                                Session["admin"] = dra.GetValue(3).ToString(); //name
+                                Session["adminID"] = dra.GetValue(0).ToString();
+                            }
 
-                        Response.Redirect("dashboardadmin.aspx", false);
+                            Response.Redirect("dashboardadmin.aspx", false);
+                        }
+                        else
+                        {
+                            showErrorMsg("Admin");
+                        }
                     }
-                    else
-                    {
-                        showErrorMsg("Admin");
-                    }
-                }
 
                 else if (ddlLoginType.SelectedValue == "User")
                 {
@@ -67,7 +72,7 @@ namespace HDGrp5
                     cmd = new SqlCommand(text_user, con);
 
                     cmd.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
-                    cmd.Parameters.AddWithValue("@password", txtPassword.Text.Trim());
+                    cmd.Parameters.AddWithValue("@password", Hash.HashString(txtPassword.Text.Trim()));
                     cmd.Parameters.AddWithValue("@user_type", "user");
 
 
