@@ -35,7 +35,7 @@ namespace HDGrp5
                 {
                     
                   
-                    
+                        
 
                         var text_admin = "SELECT * FROM g5_users WHERE email=@email AND password=@password AND user_type=@user_type;";
                         cmd = new SqlCommand(text_admin, con);
@@ -67,13 +67,15 @@ namespace HDGrp5
                     }
 
                 else if (ddlLoginType.SelectedValue == "User")
-                {
-                    var text_user = "SELECT * FROM g5_users WHERE email=@email AND password=@password AND user_type=@user_type;";
+                {   
+
+                    var text_user = "SELECT * FROM g5_users WHERE email=@email AND password=@password AND user_type=@user_type AND active=@active;";
                     cmd = new SqlCommand(text_user, con);
 
                     cmd.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
                     cmd.Parameters.AddWithValue("@password", Hash.HashString(txtPassword.Text.Trim()));
                     cmd.Parameters.AddWithValue("@user_type", "user");
+                    cmd.Parameters.AddWithValue("active", 1);
 
 
                     SqlDataReader dru = cmd.ExecuteReader();

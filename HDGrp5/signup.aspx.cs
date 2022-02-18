@@ -24,18 +24,15 @@ namespace HDGrp5
         {
             if(!PassWordValid(txtPassword.Text.Trim(), txtReEnterPassword.Text.Trim()))
             {
-                showErrorMessage("Passwords don't match");
+                return;
             }
             else { 
             string smail = SignUpEmail.Text.Trim();
-            Debug.WriteLine("output smail: " + smail);
-            Debug.WriteLine("test");
-
-
+            
                 if (checkUserExists(smail))
                 {
-                    Debug.WriteLine("user already exists");
-                    showErrorMessage("User already exists");
+                    
+                    ErrorMessage.showErrorMessage(lblErrorMsg ,"User already exists");
                     return;
                 }
                 else
@@ -44,14 +41,15 @@ namespace HDGrp5
 
                     con = new SqlConnection(strcon);
                     con.Open();
-                    var text = "INSERT INTO g5_users(email, password, name, user_type) VALUES (@email, @password, @name, @user_type);";
+                    var text = "INSERT INTO g5_users(email, password, name, user_type, active) VALUES (@email, @password, @name, @user_type, @active);";
                     cmd = new SqlCommand(text, con);
                     cmd.Parameters.AddWithValue("@email", smail);
                     cmd.Parameters.AddWithValue("@password", Hash.HashString(txtPassword.Text.Trim()));                   
                     cmd.Parameters.AddWithValue("@name", txtName.Text.Trim());
                     cmd.Parameters.AddWithValue("@user_type", "user");
-
+                    cmd.Parameters.AddWithValue("@active", 0);
                     cmd.ExecuteNonQuery();
+                    Response.Redirect("Successfull.aspx", true);
                     
 
                 }
@@ -83,26 +81,29 @@ namespace HDGrp5
             }
         }
 
-      
-        
-           
-        
+
+
+
+
         private bool PassWordValid(string p1, string p2)
         {
-            if (p1.Equals(p2))
-            return true;
+            int length = p1.Length;
+            if (length < 8)
+            {
+                ErrorMessage.showErrorMessage(lblErrorMsg, "Password needs at least 8 characters");
+                return false;
+            }
 
+            if (p1.Equals(p2)) { 
+            return true;
+        }
             else
             {
+                ErrorMessage.showErrorMessage(lblErrorMsg, "Passwords don't match");
                 return false;
             }
         }
-        private void showErrorMessage(string text)
-        {
-            lblErrorMsg.Visible = true;
-            lblErrorMsg.Text = text;
-            lblErrorMsg.CssClass = "alert alert-danger";
-        }
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
