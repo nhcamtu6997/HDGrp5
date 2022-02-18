@@ -40,14 +40,15 @@ namespace HDGrp5
                     // string password = HashString(txtPassword.Text.Trim());
 
                     con = new SqlConnection(strcon);
-                    con.Open();
-                    var text = "INSERT INTO g5_users(email, password, name, user_type, active) VALUES (@email, @password, @name, @user_type, @active);";
+                    con.Open();                   
+                    var text = "INSERT INTO g5_users(email, password, name, user_type, active, activation_hash) VALUES (@email, @password, @name, @user_type, @active, @activation_hash);";
                     cmd = new SqlCommand(text, con);
                     cmd.Parameters.AddWithValue("@email", smail);
                     cmd.Parameters.AddWithValue("@password", Hash.HashString(txtPassword.Text.Trim()));                   
                     cmd.Parameters.AddWithValue("@name", txtName.Text.Trim());
                     cmd.Parameters.AddWithValue("@user_type", "user");
                     cmd.Parameters.AddWithValue("@active", 0);
+                    cmd.Parameters.AddWithValue("@activation_hash", generateActivation_Hash()); //generate a random Hash for the activation URL in the E-Mail.
                     cmd.ExecuteNonQuery();
                     Response.Redirect("Successfull.aspx", true);
                     
@@ -102,6 +103,25 @@ namespace HDGrp5
                 ErrorMessage.showErrorMessage(lblErrorMsg, "Passwords don't match");
                 return false;
             }
+        }
+        private string generateActivation_Hash()
+        {
+            const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+            string s = String.Empty;
+            using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
+            {
+                while (s.Length != 32)
+                {
+                    byte[] oneByte = new byte[1];
+                    rng.GetBytes(oneByte);
+                    char character = (char)oneByte[0];
+                    if (valid.Contains(character))
+                    {
+                        s += character;
+                    }
+                }
+            }
+            return Hash.HashString(s);
         }
         
 

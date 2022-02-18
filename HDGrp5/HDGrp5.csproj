@@ -94,6 +94,7 @@
     <Content Include="Successfull.aspx" />
     <Content Include="viewticket.aspx" />
     <Content Include="Web.config" />
+    <Content Include="activation.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ErrorMessage.cs" />
@@ -168,6 +169,13 @@
     </Compile>
     <Compile Include="viewticket.aspx.designer.cs">
       <DependentUpon>viewticket.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="activation.aspx.cs">
+      <DependentUpon>activation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="activation.aspx.designer.cs">
+      <DependentUpon>activation.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

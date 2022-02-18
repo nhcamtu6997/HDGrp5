@@ -4,10 +4,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
-        <div><h1>You signed up successfully.</h1>
+        <div><h1>Almost finished!</h1>
             </div>
         <div>
-            <p>click <a href="login.aspx">here</a> to get back to the Login-Page.</p>
+            <p>We have sent you an confirmation E-Mail to finish the registration process.</p><br />
+            <p>Or click <a href="login.aspx">here</a> to get back to the Login-Page.</p>
         </div>
         </div>
     </asp:Content>
