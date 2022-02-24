@@ -56,7 +56,7 @@ namespace HDGrp5
                 cmd.Parameters.AddWithValue("@user_id", Session["userID"].ToString());
                 cmd.Parameters.AddWithValue("@title", txtSubject.Text.Trim());
                 cmd.Parameters.AddWithValue("@init_msg", txtMessage.Text.Trim());
-                cmd.Parameters.AddWithValue("@kategorie_name", ddlCategory.SelectedValue);
+                cmd.Parameters.AddWithValue("@kategorie_name", ddlSubCategory.SelectedValue);
                 cmd.Parameters.AddWithValue("@create_date", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 cmd.Parameters.AddWithValue("@status", "open");
 
@@ -74,6 +74,18 @@ namespace HDGrp5
                 con.Close();
 
             }
+        }
+        protected void ddlCategoryChanged(int id)
+        {
+            con = new SqlConnection(strcon);
+            con.Open();
+            
+            var text2 = "SELECT name from g5_kategorie WHERE parentID = (Select id from g5_kategorie WHERE id = @id;";
+            cmd = new SqlCommand(text2, con);
+
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.ExecuteNonQuery();
+            
         }
         private void clear()
         {
