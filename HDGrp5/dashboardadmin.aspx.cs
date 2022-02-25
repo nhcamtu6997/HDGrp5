@@ -69,6 +69,58 @@ namespace HDGrp5
                 Response.Redirect("viewticket.aspx?id=" + e.CommandArgument.ToString());
             }
         }
-        
+
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            try
+            {
+                GridViewRow row = GridView1.Rows[e.RowIndex];
+                int TicketId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
+                con = new SqlConnection(strcon);
+                query = "DELETE from [dbo].[g5_tickets] WHERE id = @id";
+                cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@id", TicketId);
+                
+                con.Open();
+                
+                int r = cmd.ExecuteNonQuery();
+                if (r > 0)
+                {
+                    lblMsg.Visible = true;
+                    lblMsg.Text = "Ticket erfolgreich gelöscht!";
+                    lblMsg.CssClass = "alert alert-success";
+                    GridView1.EditIndex = -1;
+                }
+                else
+                {
+                    lblMsg.Visible = true;
+                    lblMsg.Text = "Ticket konnte nicht gelöscht werden!";
+                    lblMsg.CssClass = "alert alert-danger";
+                }
+                con.Close();
+                this.ShowList();
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
+        }
+
+        // Delete Confirmation Box
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string item = e.Row.Cells[0].Text;
+                foreach (Button button in e.Row.Cells[8].Controls.OfType<Button>())
+                {
+                    if (button.CommandName == "Delete")
+                    {
+                        button.Attributes["onclick"] = "if(!confirm('Do you want to delete " + item + "?')){ return false; };";
+                    }
+                }
+            }
+        }
     }
 }
