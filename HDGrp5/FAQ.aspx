@@ -26,6 +26,50 @@
       <div class="panel-body">Antwort 2.</div>
     </div>
   </div>
+      <div class="border border-bottom panel panel-default p-1">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+        Wie lange ist die Bearbeitungszeit von Tickets?</a>
+      </h4>
+    </div>
+    <div id="collapse3" class="panel-collapse collapse in">
+      <div class="panel-body">Wir sind bemüht alle eingehenden Tickets in 24-48h zu beantworten.</div>
+    </div>
+  </div>
+      <div class="border border-bottom panel panel-default p-1">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+        Wie lange ist die Bearbeitungszeit von Tickets?</a>
+      </h4>
+    </div>
+    <div id="collapse4" class="panel-collapse collapse in">
+      <div class="panel-body">Wir sind bemüht alle eingehenden Tickets in 24-48h zu beantworten.</div>
+    </div>
+  </div>
+      <div class="border border-bottom panel panel-default p-1">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+        Wie lange ist die Bearbeitungszeit von Tickets?</a>
+      </h4>
+    </div>
+    <div id="collapse5" class="panel-collapse collapse in">
+      <div class="panel-body">Wir sind bemüht alle eingehenden Tickets in 24-48h zu beantworten.</div>
+    </div>
+  </div>
+      <div class="border border-bottom panel panel-default p-1">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
+        Wie lange ist die Bearbeitungszeit von Tickets?</a>
+      </h4>
+    </div>
+    <div id="collapse6" class="panel-collapse collapse in">
+      <div class="panel-body">Wir sind bemüht alle eingehenden Tickets in 24-48h zu beantworten.</div>
+    </div>
+  </div>
       </div>
         </div>
 
