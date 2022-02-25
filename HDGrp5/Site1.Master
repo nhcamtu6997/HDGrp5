@@ -44,7 +44,7 @@
                                 <asp:LinkButton class="nav-link" ID="btnCreateTicket" runat="server" OnClick="btnCreateTicket_Click" Visible="False">Create Ticket</asp:LinkButton>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">FAQs</a>
+                                <a class="nav-link" href="FAQ.aspx">FAQs</a>
                             </li>
                         </ul>
                         <ul class="navbar-nav">

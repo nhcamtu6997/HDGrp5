@@ -87,12 +87,17 @@
     <Content Include="dashboarduser.aspx" />
     <Content Include="datatables\css\jquery.dataTables.min.css" />
     <Content Include="datatables\js\jquery.dataTables.min.js" />
+    <Content Include="FAQ.aspx" />
     <Content Include="login.aspx" />
     <Content Include="resetpass.aspx" />
+    <Content Include="signup.aspx" />
+    <Content Include="Successfull.aspx" />
     <Content Include="viewticket.aspx" />
     <Content Include="Web.config" />
+    <Content Include="activation.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ErrorMessage.cs" />
     <Compile Include="createticket.aspx.cs">
       <DependentUpon>createticket.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -114,6 +119,14 @@
     <Compile Include="dashboarduser.aspx.designer.cs">
       <DependentUpon>dashboarduser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="FAQ.aspx.cs">
+      <DependentUpon>FAQ.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FAQ.aspx.designer.cs">
+      <DependentUpon>FAQ.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Hash.cs" />
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -129,6 +142,13 @@
     <Compile Include="resetpass.aspx.designer.cs">
       <DependentUpon>resetpass.aspx</DependentUpon>
     </Compile>
+    <Compile Include="signup.aspx.cs">
+      <DependentUpon>signup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="signup.aspx.designer.cs">
+      <DependentUpon>signup.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -136,12 +156,26 @@
     <Compile Include="Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
     </Compile>
+    <Compile Include="Successfull.aspx.cs">
+      <DependentUpon>Successfull.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Successfull.aspx.designer.cs">
+      <DependentUpon>Successfull.aspx</DependentUpon>
+    </Compile>
     <Compile Include="viewticket.aspx.cs">
       <DependentUpon>viewticket.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="viewticket.aspx.designer.cs">
       <DependentUpon>viewticket.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="activation.aspx.cs">
+      <DependentUpon>activation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="activation.aspx.designer.cs">
+      <DependentUpon>activation.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

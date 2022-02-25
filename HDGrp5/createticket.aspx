@@ -32,13 +32,28 @@
                         <div class="form-group">
                             <asp:TextBox CssClass="form-control" ID="txtSubject" runat="server"></asp:TextBox>
                         </div>
-                        <label>Kategorie</label>
+                        <label>Category</label>
                         <div class="form-group">
-                            <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-control w-100" AppendDataBoundItems="true" DataTextField="name" DataValueField="name" DataSourceID="SqlDataSource1">
+                            <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-control w-100" AppendDataBoundItems="true" DataTextField="name" DataValueField="name" DataSourceID="SourceCategory" AutoPostBack="true">
+                                
                                 <asp:ListItem Value="0"> Select Category</asp:ListItem>
                             </asp:DropDownList>
 
-                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:con %>" SelectCommand="SELECT [name] FROM [g5_kategorie]"></asp:SqlDataSource>
+                            <asp:SqlDataSource ID="SourceCategory" runat="server" ConnectionString="<%$ ConnectionStrings:con %>" SelectCommand="SELECT [name] FROM [g5_kategorie] WHERE [parentName] IS NULL"></asp:SqlDataSource>
+                        </div>
+                        <label>Sub Category</label>
+                        <div class="form-group">
+                            <asp:DropDownList ID="ddlSubCategory" runat="server" CssClass="form-control w-h-100" AutoPostBack="true"  DataTextField="name" DataValueField="name" DataSourceID="SourceSubCategory">
+                                <asp:ListItem Value="0">Select Sub Category</asp:ListItem>                              
+                            </asp:DropDownList>
+                            <asp:SqlDataSource ID="SourceSubCategory" runat="server" ConnectionString="<%$ ConnectionStrings:con %>" SelectCommand="SELECT [name] from [g5_kategorie] WHERE parentName=@name"> 
+                                <SelectParameters>
+                                <asp:ControlParameter ControlID="ddlCategory" PropertyName="SelectedValue" Name="name" Type="String" DefaultValue="Select SubCategory" /></SelectParameters>
+                                                                                                    
+                                
+                            </asp:SqlDataSource>
+                            
+                           
                         </div>
                         <label>Message</label>
                         <div class="form-group">
