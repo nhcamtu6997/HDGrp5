@@ -44,7 +44,13 @@
                                 <asp:LinkButton class="nav-link" ID="btnCreateTicket" runat="server" OnClick="btnCreateTicket_Click" Visible="False">Create Ticket</asp:LinkButton>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="FAQ.aspx">FAQs</a>
+                                <asp:LinkButton class="nav-link" ID="btnFAQ" runat="server" OnClick="btnFAQ_Click" Visible="True">FAQ</asp:LinkButton>
+                            </li>
+                             <li class="nav-item">
+                                <asp:LinkButton class="nav-link" ID="btnChangePW" runat="server" OnClick="btnChangePW_Click" Visible="False">Change Password</asp:LinkButton>
+                            </li>
+                            <li class="nav-item">
+                                <asp:LinkButton class="nav-link" ID="btnChangeUsername" runat="server" OnClick="btnChangeUsername_Click" Visible="False">Change Username</asp:LinkButton>
                             </li>
                         </ul>
                         <ul class="navbar-nav">

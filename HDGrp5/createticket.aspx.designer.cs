@@ -69,6 +69,24 @@ namespace HDGrp5
         protected global::System.Web.UI.WebControls.SqlDataSource SourceSubCategory;
 
         /// <summary>
+        /// RequiredFieldValidatorddlSubCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorddlSubCategory;
+
+        /// <summary>
+        /// RequiredFieldValidatorSubject control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorSubject;
+
+        /// <summary>
         /// txtMessage control.
         /// </summary>
         /// <remarks>

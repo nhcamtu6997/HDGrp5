@@ -51,6 +51,11 @@
                                 <asp:ControlParameter ControlID="ddlCategory" PropertyName="SelectedValue" Name="name" Type="String" DefaultValue="Select SubCategory" /></SelectParameters>                              
                             </asp:SqlDataSource>
 
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidatorddlSubCategory" runat="server" 
+        ControlToValidate="ddlSubCategory" ErrorMessage="Please select a category" InitialValue=""></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorSubject" runat="server" 
+        ControlToValidate="txtSubject" ErrorMessage="Please fill the subject textbox" InitialValue=""></asp:RequiredFieldValidator>
+                           
                         </div>
                         <label>Message</label>
                         <div class="form-group">

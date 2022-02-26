@@ -81,6 +81,8 @@
     <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="bootstrap\js\jquery-3.3.1.slim.min.js" />
     <Content Include="bootstrap\js\popper.min.js" />
+    <Content Include="ChangePW.aspx" />
+    <Content Include="ChangeUsername.aspx" />
     <Content Include="createticket.aspx" />
     <Content Include="css\customstylesheet.css" />
     <Content Include="dashboardadmin.aspx" />
@@ -97,6 +99,20 @@
     <Content Include="activation.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChangePW.aspx.cs">
+      <DependentUpon>ChangePW.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangePW.aspx.designer.cs">
+      <DependentUpon>ChangePW.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeUsername.aspx.cs">
+      <DependentUpon>ChangeUsername.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangeUsername.aspx.designer.cs">
+      <DependentUpon>ChangeUsername.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ErrorMessage.cs" />
     <Compile Include="createticket.aspx.cs">
       <DependentUpon>createticket.aspx</DependentUpon>
