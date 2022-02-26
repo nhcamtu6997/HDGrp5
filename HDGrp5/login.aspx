@@ -46,19 +46,17 @@
                  </div>
 
             </div>
-            <a href="signup.aspx">Not signed up yet? Create Account.</a> <br />
-            <a href="resetpass.aspx">Reset password?</a>
-
+             <div class="form-group position-relative">
+                 <a href="resetpass.aspx">Reset password?</a>
+                 <a href="signup.aspx" style="display:flex; width:100%; padding:0;">Not signed up yet? Create Account</a>                              
+             </div>
+             
             <div>
                 <p>Test Data
                     <br>Admin: test.projekten.tun@gmail.com
                     <br>Passwort: 123
-                    <br>Admin: cdempsey0@cdc.gov
-                    <br>Passwort: nCEklI
                     <br>User: tun.ltinh23@gmail.com
-                    <br>Passwort: 123
-                    <br>User: smariotte2@indiatimes.com
-                    <br>Passwort: gbsXUMY
+                    <br>Passwort: YH?y}_8Y
                 </p>
             </div>
          </div>
