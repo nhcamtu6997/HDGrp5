@@ -60,13 +60,13 @@ namespace HDGrp5
         protected global::System.Web.UI.WebControls.Label lblHello;
 
         /// <summary>
-        /// btnLogout control.
+        /// btnLogoutOrIn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnLogout;
+        protected global::System.Web.UI.WebControls.LinkButton btnLogoutOrIn;
 
         /// <summary>
         /// ContentPlaceHolder1 control.

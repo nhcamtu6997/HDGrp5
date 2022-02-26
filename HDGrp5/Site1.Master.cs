@@ -17,7 +17,7 @@ namespace HDGrp5
                 {
                     btnDashboardAoU.Visible = true;
                     btnCreateTicket.Visible = false;
-                    btnLogout.Visible = true;
+                    btnLogoutOrIn.Text = "Logout";
                     lblHello.Visible = true;
                     lblHello.Text = "Hello admin " + Session["admin"].ToString();
                 }
@@ -25,7 +25,7 @@ namespace HDGrp5
                 {
                     btnDashboardAoU.Visible = true;
                     btnCreateTicket.Visible = true;
-                    btnLogout.Visible = true;
+                    btnLogoutOrIn.Text = "Logout";
                     lblHello.Visible = true;
                     lblHello.Text = "Hello " + Session["user"].ToString();
                 }
@@ -56,7 +56,7 @@ namespace HDGrp5
             Response.Redirect("createticket.aspx");
         }
 
-        protected void btnLogout_Click(object sender, EventArgs e)
+        protected void btnLogoutOrIn_Click(object sender, EventArgs e)
         {
             Session.Abandon();
             Response.Redirect("login.aspx");

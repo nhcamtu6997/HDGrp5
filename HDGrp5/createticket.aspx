@@ -48,20 +48,15 @@
                             </asp:DropDownList>
                             <asp:SqlDataSource ID="SourceSubCategory" runat="server" ConnectionString="<%$ ConnectionStrings:con %>" SelectCommand="SELECT [name] from [g5_kategorie] WHERE parentName=@name"> 
                                 <SelectParameters>
-                                <asp:ControlParameter ControlID="ddlCategory" PropertyName="SelectedValue" Name="name" Type="String" DefaultValue="Select SubCategory" /></SelectParameters>
-                                                                                                    
-                                
+                                <asp:ControlParameter ControlID="ddlCategory" PropertyName="SelectedValue" Name="name" Type="String" DefaultValue="Select SubCategory" /></SelectParameters>                              
                             </asp:SqlDataSource>
-                            
-                           
+
                         </div>
                         <label>Message</label>
                         <div class="form-group">
                             <asp:TextBox CssClass="form-control" ID="txtMessage" TextMode="MultiLine" Columns="50" Rows="10" runat="server" placeholder="Ihre Problem .."></asp:TextBox>
                         </div>
-                        <div class="form-group">
-                            <input type="file" name="attachment">
-                        </div>
+          
                         <div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
                             <asp:Button ID="btnDiscard" class="btn btn-link me-md-2" runat="server" Text="Discard" OnClick="btnDiscard_Click" />
                             <asp:Button ID="btnSubmit" class="btn btn-primary btn-success" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
