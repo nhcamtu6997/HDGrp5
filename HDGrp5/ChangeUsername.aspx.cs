@@ -32,11 +32,18 @@ namespace HDGrp5
             String name = txtNewUsername.Text.Trim();
             con = new SqlConnection(strcon);
             con.Open();
-            
-            
+
+
             var text = "UPDATE g5_users SET name = @name WHERE id= @id;";
+
             cmd = new SqlCommand(text, con);
-            cmd.Parameters.AddWithValue("@id", Session["userID"]);
+            if (Session["admin"] != null) { 
+            cmd.Parameters.AddWithValue("@id", Session["adminID"]);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("id", Session["userID"]);
+            }
             cmd.Parameters.AddWithValue("@name", name);
             cmd.ExecuteNonQuery();
             lblSuccess.Text = "Username was changed successfully! Relogin to see the change";

@@ -37,7 +37,14 @@ namespace HDGrp5
                 con.Open();
                 var text = "UPDATE g5_users SET password = @password WHERE id = @id;";
                 cmd = new SqlCommand(text, con);
-                cmd.Parameters.AddWithValue("@id", Session["userID"]);
+                if (Session["admin"] != null)
+                {
+                    cmd.Parameters.AddWithValue("@id", Session["adminID"]);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@id", Session["userID"]);
+                }
                 cmd.Parameters.AddWithValue("@password", Hash.HashString(txtNewPassword.Text.Trim()));
                 cmd.ExecuteNonQuery();
                 lblSuccess.Text = "Password changed successfully!";
