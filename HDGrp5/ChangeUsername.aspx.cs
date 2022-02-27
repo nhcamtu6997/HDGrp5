@@ -39,7 +39,14 @@ namespace HDGrp5
             cmd.Parameters.AddWithValue("@id", Session["userID"]);
             cmd.Parameters.AddWithValue("@name", name);
             cmd.ExecuteNonQuery();
-            ErrorMessage.showErrorMessage(lblSuccess, "Username was changed successfully");
+            lblSuccess.Text = "Username was changed successfully! Relogin to see the change";
+            lblSuccess.Visible = true;
+            clear();
+        }
+
+        private void clear()
+        {
+            txtNewUsername.Text = string.Empty;
         }
     }
 }

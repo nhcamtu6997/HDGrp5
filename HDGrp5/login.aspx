@@ -11,16 +11,20 @@
                         <h1>Login</h1>
                     </center>
                 </div>
+            
             </div>
             <div class="row">
                 <div class="col">
                     <hr>
                 </div>
             </div>
+            
              <!--Message for User-->
             <div class="row">
                 <asp:Label ID="lblMsg" runat="server" Visible="false" CssClass="form-control"></asp:Label>
             </div>
+
+
             <div class="row">
                 <div class="col">
                     <label>Email</label>
@@ -33,6 +37,7 @@
                     </div>
                     <label>Login Type</label>
                     <div class="form-group">
+                        <asp:RequiredFieldValidator ID="RequiredType" ErrorMessage="This field is required" runat="server" ForeColor="Red" Display="Dynamic" SetFocusOnError="true" Font-Size="Small" InitialValue="" ControlToValidate="ddlLoginType"></asp:RequiredFieldValidator>
                         <asp:DropDownList ID="ddlLoginType" CssClass="form-control w-100" runat="server">
                             <asp:ListItem Value="0">Select Login Type</asp:ListItem>
                             <asp:ListItem>Admin</asp:ListItem>

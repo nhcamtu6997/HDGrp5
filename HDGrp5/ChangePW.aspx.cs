@@ -40,7 +40,9 @@ namespace HDGrp5
                 cmd.Parameters.AddWithValue("@id", Session["userID"]);
                 cmd.Parameters.AddWithValue("@password", Hash.HashString(txtNewPassword.Text.Trim()));
                 cmd.ExecuteNonQuery();
-                ErrorMessage.showErrorMessage(lblSuccess, "Password changed successfully!");
+                lblSuccess.Text = "Password changed successfully!";
+                lblSuccess.Visible = true;
+                clear();
                 return;
             }
         }
@@ -90,7 +92,14 @@ namespace HDGrp5
             }
             return false;
             }
-        
+
+        private void clear()
+        {
+            txtCurrentPassword.Text = string.Empty;
+            txtNewPassword.Text = string.Empty;
+            txtConfirmNewPassword.Text = string.Empty;
+        }
+
 
     }
 }

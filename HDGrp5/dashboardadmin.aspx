@@ -12,15 +12,14 @@
 
     <div class="container-fluid">
         <h1 class="text-center mb-4">Dashboard for Admin</h1>
-
+        <!--Message for User-->
+        <div class="row">
+            <asp:Label ID="lblMsg" runat="server" Visible="false" CssClass="form-control"></asp:Label>
+        </div>
+        <!-- End Message for User-->
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <!--Message for User-->
-                <div>
-                    <asp:Label ID="lblMsg" runat="server" Visible="false" CssClass="form-control align-content-center"></asp:Label>
-                </div>
-                <!-- End Message for User-->
-                
+
                 <asp:GridView class="table table-sm table-bordered" ID="GridView1" runat="server" EmptyDataText="No record to display..!" AutoGenerateColumns="False" AllowPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging" DataKeyNames="id" OnRowCommand="GridView1_RowView" OnRowDeleting="GridView1_RowDeleting" OnRowDataBound="GridView1_RowDataBound">
                     <Columns>
 
