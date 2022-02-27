@@ -78,7 +78,6 @@ namespace HDGrp5
         protected global::System.Web.UI.WebControls.SqlDataSource SourceSubCategory;
 
         /// <summary>
-<<<<<<< Updated upstream
         /// RequiredFieldValidatorddlSubCategory control.
         /// </summary>
         /// <remarks>
@@ -98,9 +97,6 @@ namespace HDGrp5
 
         /// <summary>
         /// RequiredFieldValidatorMessage control.
-=======
-        /// txtMessage control.
->>>>>>> Stashed changes
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
