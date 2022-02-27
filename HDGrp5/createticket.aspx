@@ -30,7 +30,9 @@
                         <label>Subject</label>
                         <div class="form-group">
 
+
                             <asp:TextBox CssClass="form-control" ValidationGroup="valGroup1" ID="txtSubject" placeholder="Headline to your issue..." runat="server"></asp:TextBox>
+
 
                         </div>
 
@@ -46,8 +48,10 @@
                         <label>Sub Category</label>
                         <div class="form-group">
 
+
                             <asp:DropDownList ID="ddlSubCategory" runat="server" CssClass="form-control w-h-100" AutoPostBack="true" ValidationGroup="valGroup1"  DataTextField="name" DataValueField="name" DataSourceID="SourceSubCategory">
                                 <asp:ListItem Value="0">Select Sub Category</asp:ListItem>                              
+
 
                             </asp:DropDownList>
                             <asp:SqlDataSource ID="SourceSubCategory" runat="server" ConnectionString="<%$ ConnectionStrings:con %>" SelectCommand="SELECT [name] from [g5_kategorie] WHERE parentName=@name">
@@ -55,6 +59,7 @@
                                     <asp:ControlParameter ControlID="ddlCategory" PropertyName="SelectedValue" Name="name" Type="String" DefaultValue="Select SubCategory" />
                                 </SelectParameters>
                             </asp:SqlDataSource>
+
 
                         
                            
@@ -74,6 +79,7 @@
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="txtMessage" ValidationGroup="valGroup1" ErrorMessage="Please describe your issue."/>
 
                             
+
                         </div>
                     </div>
                 </div>

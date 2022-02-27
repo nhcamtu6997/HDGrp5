@@ -22,13 +22,6 @@ namespace HDGrp5
         {
 
         }
-        protected void Page_PreRender(object sender, EventArgs e)
-        {
-            if (Session["user"] == null && Session["admin"] == null)
-            {
-                Response.Redirect("login.aspx");
-            }
-        }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
