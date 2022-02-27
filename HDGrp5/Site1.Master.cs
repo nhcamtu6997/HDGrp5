@@ -17,11 +17,9 @@ namespace HDGrp5
                 {
                     btnDashboardAoU.Visible = true;
                     btnCreateTicket.Visible = false;
-                    btnLogoutOrIn.Text = "Logout";
-                    btnLogout.Visible = true;
+                    btnLogoutOrIn.Text = "Logout";  
                     btnChangePW.Visible = true;
                     btnChangeUsername.Visible = true;
-
                     lblHello.Visible = true;
                     lblHello.Text = "Hello admin " + Session["admin"].ToString();
                 }
@@ -30,7 +28,6 @@ namespace HDGrp5
                     btnDashboardAoU.Visible = true;
                     btnCreateTicket.Visible = true;
                     btnLogoutOrIn.Text = "Logout";
-                    btnLogout.Visible = true;
                     btnChangePW.Visible = true;
                     btnChangeUsername.Visible = true;
                     lblHello.Visible = true;

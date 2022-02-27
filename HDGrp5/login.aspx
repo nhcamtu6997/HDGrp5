@@ -38,7 +38,6 @@
                             <asp:ListItem>Admin</asp:ListItem>
                             <asp:ListItem>User</asp:ListItem>
                         </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="RequiredFielValidator1" runat="server" ErrorMessage="This field is required" ForeColor="Red" Display="Dynamic" SetFocusOnError="true" Font-Size="Small" InitialValue="0" ControlToValidate="ddlLoginType"></asp:RequiredFieldValidator>
                     </div>
                     <div class="form-group">
                     <asp:Button class="btn btn-success btn-block" ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" />
