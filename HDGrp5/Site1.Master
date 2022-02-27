@@ -75,13 +75,15 @@
         <!-- Main Content Placeholder -->
 
         <!-- Footer -->
+        <div class="d-flex flex-column min-vh-100">
         <footer class="bg-light text-center text-lg-start">
-  <!-- Copyright -->
+  
   <div class="text-center p-3" style="background-color: #75B0BF">
     Call Us: 069 123456789
   </div>
-  <!-- Copyright -->
+  
 </footer>
+        </div>
         <!-- ./Footer -->
     </form>
 </body>
