@@ -16,8 +16,6 @@ namespace HDGrp5
         SqlConnection con;
         SqlCommand cmd;
 
-
-
         protected void Page_PreRender(object sender, EventArgs e)
         {
             if (Session["user"] == null && Session["admin"] == null)
@@ -25,7 +23,7 @@ namespace HDGrp5
                 Response.Redirect("login.aspx");
             }
         }
-        protected void ChangePassword(object sender, EventArgs e)
+        protected void ChangePassword_Click(object sender, EventArgs e)
         {
             if (!PassWordValid(txtNewPassword.Text.Trim(), txtConfirmNewPassword.Text.Trim()) || !CurrentPassWordValid(txtCurrentPassword.Text.Trim()))
             {
@@ -53,7 +51,6 @@ namespace HDGrp5
                 return;
             }
         }
-
         private bool PassWordValid(string p1, string p2)
         {
             int length = p1.Length;
@@ -99,7 +96,6 @@ namespace HDGrp5
             }
             return false;
             }
-
         private void clear()
         {
             txtCurrentPassword.Text = string.Empty;

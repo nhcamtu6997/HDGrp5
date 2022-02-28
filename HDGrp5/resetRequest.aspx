@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="resetpass.aspx.cs" Inherits="HDGrp5.resetpass" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="resetRequest.aspx.cs" Inherits="HDGrp5.resetRequest" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -21,18 +21,12 @@
                 <div class="col">
                     <label>Email</label>
                     <div class="form-group">
-                        <asp:TextBox CssClass="form-control" ID="TextBox1" runat="server" placeholder="abc@xcy.hf"></asp:TextBox>
+                        <asp:TextBox CssClass="form-control" ID="txtEmail" runat="server" placeholder="abc@xcy.hf"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredType" ErrorMessage="This field is required" runat="server" ForeColor="Red" Display="Dynamic" SetFocusOnError="true" Font-Size="Small" InitialValue="" ControlToValidate="txtEmail"></asp:RequiredFieldValidator>
                     </div>
-                    <label>New password</label>
+                    
                     <div class="form-group">
-                         <asp:TextBox CssClass="form-control" ID="TextBox2" runat="server" placeholder="*******" TextMode="Password"></asp:TextBox>
-                    </div>
-                    <label>Repeat the new password</label>
-                    <div class="form-group">
-                         <asp:TextBox CssClass="form-control" ID="TextBox3" runat="server" placeholder="*******" TextMode="Password"></asp:TextBox>
-                    </div>
-                    <div class="form-group">
-                    <asp:Button class="btn btn-success btn-block" ID="Button1" runat="server" Text="Reset" />
+                    <asp:Button class="btn btn-success btn-block" ID="btnReset" runat="server" Text="Send request to reset password" OnClick="btnReset_Click" />
                     </div>
                  </div>
 

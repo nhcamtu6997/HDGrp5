@@ -51,7 +51,7 @@
 
             </div>
              <div class="form-group position-relative">
-                 <a href="resetpass.aspx">Reset password?</a>
+                 <a href="resetRequest.aspx">Reset password?</a>
                  <a href="signup.aspx" style="display:flex; width:100%; padding:0;">Not signed up yet? Create Account</a>                              
              </div>
              

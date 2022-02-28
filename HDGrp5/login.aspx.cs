@@ -33,9 +33,6 @@ namespace HDGrp5
 
                 if (ddlLoginType.SelectedValue == "Admin")
                 {
-                    
-                  
-                        
 
                         var text_admin = "SELECT * FROM g5_users WHERE email=@email AND password=@password AND user_type=@user_type;";
                         cmd = new SqlCommand(text_admin, con);

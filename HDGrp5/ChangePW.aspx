@@ -35,7 +35,7 @@
                             <asp:RequiredFieldValidator ID="RequiredConfirmNewPassword" ErrorMessage="This field is required" runat="server" ForeColor="Red" Display="Dynamic" SetFocusOnError="true" Font-Size="Small" InitialValue="" ControlToValidate="txtConfirmNewPassword"></asp:RequiredFieldValidator>
                         </div>
                         <div class="form-group">
-                            <asp:Button class="btn btn-success btn-block" ID="btnChangePassword" runat="server" Text="Change Password" OnClick="ChangePassword" />
+                            <asp:Button class="btn btn-success btn-block" ID="btnChangePassword" runat="server" Text="Change Password" OnClick="ChangePassword_Click" />
                         </div>
                     </div>
                 </div>

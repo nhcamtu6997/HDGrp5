@@ -18,8 +18,6 @@ namespace HDGrp5
         SqlConnection con;
         SqlCommand cmd;
 
-       
-
         public void CreateUser(object sender, EventArgs e)
         {
             if(!PassWordValid(txtPassword.Text.Trim(), txtReEnterPassword.Text.Trim()))
@@ -48,7 +46,9 @@ namespace HDGrp5
                     cmd.Parameters.AddWithValue("@name", txtName.Text.Trim());
                     cmd.Parameters.AddWithValue("@user_type", "user");
                     cmd.Parameters.AddWithValue("@active", 0);
-                    cmd.Parameters.AddWithValue("@activation_hash", generateActivation_Hash()); //generate a random Hash for the activation URL in the E-Mail.
+                    //generate a random Hash for the activation URL in the E-Mail.
+                    cmd.Parameters.AddWithValue("@activation_hash", generateActivation_Hash()); 
+                   
                     cmd.ExecuteNonQuery();
                     Response.Redirect("Successfull.aspx", true);
                     
@@ -58,7 +58,6 @@ namespace HDGrp5
             
                       
         }
-
         private bool checkUserExists(string email)
         {
             con = new SqlConnection(strcon);
@@ -82,10 +81,6 @@ namespace HDGrp5
             }
         }
 
-
-
-
-
         private bool PassWordValid(string p1, string p2)
         {
             int length = p1.Length;
@@ -104,6 +99,7 @@ namespace HDGrp5
                 return false;
             }
         }
+
         private string generateActivation_Hash()
         {
             const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
@@ -124,7 +120,6 @@ namespace HDGrp5
             return Hash.HashString(s);
         }
         
-
         protected void Page_Load(object sender, EventArgs e)
         {
 

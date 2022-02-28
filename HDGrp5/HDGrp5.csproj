@@ -91,7 +91,9 @@
     <Content Include="datatables\js\jquery.dataTables.min.js" />
     <Content Include="FAQ.aspx" />
     <Content Include="login.aspx" />
-    <Content Include="resetpass.aspx" />
+    <Content Include="resetPage.aspx" />
+    <Content Include="resetRequest.aspx" />
+    <Content Include="resetSuccessfull.aspx" />
     <Content Include="signup.aspx" />
     <Content Include="Successfull.aspx" />
     <Content Include="viewticket.aspx" />
@@ -151,12 +153,26 @@
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="resetpass.aspx.cs">
-      <DependentUpon>resetpass.aspx</DependentUpon>
+    <Compile Include="resetPage.aspx.cs">
+      <DependentUpon>resetPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="resetpass.aspx.designer.cs">
-      <DependentUpon>resetpass.aspx</DependentUpon>
+    <Compile Include="resetPage.aspx.designer.cs">
+      <DependentUpon>resetPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="resetRequest.aspx.cs">
+      <DependentUpon>resetRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="resetRequest.aspx.designer.cs">
+      <DependentUpon>resetRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="resetSuccessfull.aspx.cs">
+      <DependentUpon>resetSuccessfull.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="resetSuccessfull.aspx.designer.cs">
+      <DependentUpon>resetSuccessfull.aspx</DependentUpon>
     </Compile>
     <Compile Include="signup.aspx.cs">
       <DependentUpon>signup.aspx</DependentUpon>

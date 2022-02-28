@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace HDGrp5
 {
-    public partial class resetpass : System.Web.UI.Page
+    public partial class resetSuccessfull : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
