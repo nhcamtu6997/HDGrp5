@@ -31,32 +31,8 @@ namespace HDGrp5
             else if (Session["user"] != null){
                 btnCloseTicket.Visible = false;
             }
-         
 
-            con = new SqlConnection(strcon);
-            con.Open();
-            query = "Select status from [dbo].[g5_tickets] WHERE id = @id;";
-
-            cmd = new SqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@id", Request.QueryString["id"]);
-
-            sdr = cmd.ExecuteReader();
-            
-
-            if (sdr.HasRows)
-            {
-                while (sdr.Read())
-                {
-                    String status = sdr["status"].ToString();
-
-                    if (status.Equals("closed"))
-                    {
-                        btnReopenTicket.Visible = true;
-                        btnCloseTicket.Visible=false;
-                    }
-                }
-            }
-
+            setButtonCloseOrOpen();
 
             if (!IsPostBack)
             {
@@ -96,12 +72,17 @@ namespace HDGrp5
 
         protected void btnReopenTicket_Click(object sender, EventArgs e)
         {
+            setProgressStatus();
+        }
+
+        private void setProgressStatus()
+        {
             try
             {
                 con = new SqlConnection(strcon);
                 con.Open();
 
-                query = "UPDATE g5_tickets SET status = 'open' WHERE id = @id;";
+                query = "UPDATE g5_tickets SET status = 'in progress' WHERE id = @id;";
 
                 cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("id", Request.QueryString["id"]);
@@ -156,6 +137,12 @@ namespace HDGrp5
                                 lblStatus.Text = "Closed";
                                 lblStatus.CssClass = "badge rounded-pill bg-secondary";
                             }
+                            else if (String.Equals(sdr["status"].ToString(), "in progress"))
+                            {
+                                lblStatus.Text = "In progress";
+                                lblStatus.CssClass = "badge rounded-pill bg-warning text-dark";
+                            }
+
                         }
                     }
                     else
@@ -195,7 +182,7 @@ namespace HDGrp5
 
                 Repeater1.DataSource = ds;
                 Repeater1.DataBind();
-
+                
                 con.Close();
             }
             catch (Exception ex)
@@ -211,9 +198,11 @@ namespace HDGrp5
                 con = new SqlConnection(strcon);
                 con.Open();
 
-                query = "INSERT INTO [dbo].[g5_ticket_replies] (user_id, text, ticket_id, date) VALUES (@user_id, @text, @ticket_id, @date);";
-                cmd = new SqlCommand(query, con);
+                string q_insert = "INSERT INTO [dbo].[g5_ticket_replies] (user_id, text, ticket_id, date) VALUES (@user_id, @text, @ticket_id, @date);";
+                string q_update = "UPDATE g5_tickets SET status = 'in progress' WHERE id = @id;";
+                string query = q_insert + " ; " + q_update;
 
+                // Parameter for INSERT status
                 if (Session["admin"] != null)
                 {
                     cmd.Parameters.AddWithValue("@user_id", Session["adminID"].ToString());
@@ -222,10 +211,14 @@ namespace HDGrp5
                 {
                     cmd.Parameters.AddWithValue("@user_id", Session["userID"].ToString());
                 }
-
                 cmd.Parameters.AddWithValue("@text", txtReply.Text.Trim());
                 cmd.Parameters.AddWithValue("@ticket_id", Request.QueryString["id"]);
                 cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                // Parameter for UPDATE status
+                cmd.Parameters.AddWithValue("@id", Request.QueryString["id"]);
+
+                cmd = new SqlCommand(query, con);
 
                 cmd.ExecuteNonQuery();
                 Repeater1.DataBind();
@@ -274,6 +267,42 @@ namespace HDGrp5
                 
             }
         }
+        
+        private void setButtonCloseOrOpen()
+        {
+            try
+            {
+                con = new SqlConnection(strcon);
+                con.Open();
+                query = "Select status from [dbo].[g5_tickets] WHERE id = @id;";
+
+                cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@id", Request.QueryString["id"]);
+
+                sdr = cmd.ExecuteReader();
+
+
+                if (sdr.HasRows)
+                {
+                    while (sdr.Read())
+                    {
+                        String status = sdr["status"].ToString();
+
+                        if (status.Equals("closed"))
+                        {
+                            btnReopenTicket.Visible = true;
+                            btnCloseTicket.Visible = false;
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
+        }
+
         
     }
 }

@@ -38,14 +38,14 @@
                             </div>
                         </div>
                         <%--End Ticket--%>
-                        
-                        <div style="display:flex; justify-content:flex-end; width:100%; padding:0;">
-                            <asp:LinkButton class="btn btn-danger" ID="btnCloseTicket" runat="server" OnClick="btnCloseTicket_Click" Visible="false" Text="Close this ticket"></asp:LinkButton>
-                          
+
+                        <div style="display: flex; justify-content: flex-end; width: 100%; padding: 0;">
+                            <asp:LinkButton class="btn btn-danger" ID="btnCloseTicket" runat="server" OnClick="btnCloseTicket_Click" Visible="false" Text="Close this ticket" CausesValidation="false"></asp:LinkButton>
+
                         </div>
-                        <div style="display:flex; justify-content:flex-end; width:100%; padding:0;">
-                            <asp:LinkButton class="btn btn-danger" ID="btnReopenTicket" runat="server" OnClick="btnReopenTicket_Click" Visible="false" Text="Reopen this ticket"></asp:LinkButton>
-                          
+                        <div style="display: flex; justify-content: flex-end; width: 100%; padding: 0;">
+                            <asp:LinkButton class="btn btn-danger" ID="btnReopenTicket" runat="server" OnClick="btnReopenTicket_Click" Visible="false" Text="Reopen this ticket" CausesValidation="false"></asp:LinkButton>
+
                         </div>
                         <h3 class="mb-4">Replies</h3>
                         <%--Reply output repeat--%>
@@ -73,9 +73,10 @@
                         <%--Reply input--%>
                         <div class="form-group">
                             <asp:TextBox CssClass="form-control" ID="txtReply" TextMode="MultiLine" Rows="5" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredReply" ErrorMessage="This field is required" runat="server" ForeColor="Red" Display="Dynamic" SetFocusOnError="true" Font-Size="Small" InitialValue="" ControlToValidate="txtReply"></asp:RequiredFieldValidator>
                         </div>
                         <div class="form-group">
-                            <asp:Button ID="btnReply" class="btn btn-primary btn-success" runat="server" Text="Reply" OnClick="btnReply_Click" />
+                            <asp:Button ID="btnReply" class="btn btn-primary btn-success" runat="server" Text="Reply" OnClick="btnReply_Click"/>
                         </div>
                         <%--End Reply input--%>
                     </div>

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="dashboardadmin.aspx.cs" Inherits="HDGrp5.dashboardadmin" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <%--Search with datatables--%>
+        <%--Search with datatables--%>
     <script type="text/javascript">
         $(document).ready(function () {
             $(".table").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
@@ -19,7 +19,6 @@
         <!-- End Message for User-->
         <div class="row">
             <div class="col-md-8 mx-auto">
-
                 <asp:GridView class="table table-sm table-bordered" ID="GridView1" runat="server" EmptyDataText="No record to display..!" AutoGenerateColumns="False" AllowPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging" DataKeyNames="id" OnRowCommand="GridView1_RowView" OnRowDeleting="GridView1_RowDeleting" OnRowDataBound="GridView1_RowDataBound">
                     <Columns>
 
@@ -66,6 +65,8 @@
 
                     </Columns>
                 </asp:GridView>
+
+ 
             </div>
         </div>
     </div>
