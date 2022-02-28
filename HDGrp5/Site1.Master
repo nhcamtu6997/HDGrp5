@@ -25,6 +25,22 @@
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript">  
+        $(window).bind("load", function () {
+            var footer = $("#footer");
+            var pos = footer.position();
+            var height = $(window).height();
+            height = height - pos.top;
+            height = height - footer.height();
+            if (height > 0) {
+                footer.css({
+                    'margin-top': height + 'px'
+                });
+            }
+        });
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -32,7 +48,7 @@
             <nav class="navbar navbar-expand-md navbar-light mb-4" style="background-color: #75B0BF">
                 <div class="container">
                     <h1 class="navbar-brand">Ticketing system</h1>
-                    
+
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     </button>
 
@@ -47,7 +63,7 @@
                             <li class="nav-item">
                                 <asp:LinkButton class="nav-link" ID="btnFAQ" CausesValidation="false" runat="server" OnClick="btnFAQ_Click" Visible="True">FAQ</asp:LinkButton>
                             </li>
-                             <li class="nav-item">
+                            <li class="nav-item">
                                 <asp:LinkButton class="nav-link" ID="btnChangePW" CausesValidation="false" runat="server" OnClick="btnChangePW_Click" Visible="False">Change Password</asp:LinkButton>
                             </li>
                             <li class="nav-item">
@@ -67,7 +83,7 @@
                 </div>
             </nav>
         </div>
-        
+
         <!-- Main Content Placeholder -->
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
@@ -76,14 +92,10 @@
         <!-- Main Content Placeholder -->
 
         <!-- Footer -->
-        <div class="d-flex flex-column min-vh-100">
-        <footer class="bg-light text-center text-lg-start">
-  
-  <div class="text-center p-3" style="background-color: #75B0BF">
-    Call Us: 069 123456789
-  </div>
-  
-</footer>
+        <div id="footer" class="bg-light text-center text-lg-start">
+            <div class="text-center p-3" style="background-color: #75B0BF">
+                Call Us: +49 123456789
+            </div>
         </div>
         <!-- ./Footer -->
     </form>
