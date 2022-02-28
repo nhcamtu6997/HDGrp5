@@ -28,19 +28,25 @@ namespace HDGrp5
 
             if (!IsPostBack)
             {
-                ShowList();
+                this.ShowList();
             }
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             ShowList();
+
+            //Required for jQuery DataTables to work
+            GridView1.UseAccessibleHeader = true;
+            GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         private void ShowList()
         {
             con = new SqlConnection(strcon);
-            
+
+            con.Open();
+
             query = "SELECT t.id, t.title, t.user_id, t.kategorie_name, t.create_date, t.status, u.name " +
                 "FROM [dbo].[g5_tickets] AS t " +
                 "JOIN [dbo].[g5_users] AS u ON t.user_id = u.id " +
@@ -53,6 +59,8 @@ namespace HDGrp5
             sda.Fill(dt);
             GridView1.DataSource = dt;
             GridView1.DataBind();
+
+            con.Close();
         }
 
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -86,16 +94,8 @@ namespace HDGrp5
                 int r = cmd.ExecuteNonQuery();
                 if (r > 0)
                 {
-                    lblMsg.Visible = true;
-                    lblMsg.Text = "Ticket erfolgreich gelöscht!";
-                    lblMsg.CssClass = "alert alert-success";
+                    Response.Write("<script>alert('Successfully deleted!')</script>");
                     GridView1.EditIndex = -1;
-                }
-                else
-                {
-                    lblMsg.Visible = true;
-                    lblMsg.Text = "Ticket konnte nicht gelöscht werden!";
-                    lblMsg.CssClass = "alert alert-danger";
                 }
                 con.Close();
                 this.ShowList();
@@ -110,6 +110,13 @@ namespace HDGrp5
         // Delete Confirmation Box
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            //check if the row is the header row
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                //add the thead and tbody section programatically
+                e.Row.TableSection = TableRowSection.TableHeader;
+            }
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 string item = e.Row.Cells[0].Text;
@@ -122,5 +129,6 @@ namespace HDGrp5
                 }
             }
         }
+
     }
 }
